@@ -14,8 +14,8 @@ import {
   mockLocalGuides
 } from './mockData';
 
-// Modo mock ativado
-const USE_MOCK = true;
+// Modo mock desativado - usando dados reais do Base44
+const USE_MOCK = false;
 
 // Helper para criar entidades mock
 const createMockEntity = (data) => ({

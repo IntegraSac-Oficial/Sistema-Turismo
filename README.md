@@ -87,9 +87,6 @@ O projeto está configurado em modo mock para visualização sem necessidade de 
 
 ## 📄 Licença
 
-© 2012/2025 Praias Catarinenses. Todos os direitos reservados.
+© 2026 IntegraSAC. Todos os direitos reservados.
 
-## 📞 Contato
 
-- Email: contato@praiascatarinenses.com
-- Telefone: (47) 99131-5105

@@ -1,0 +1,72 @@
+name: Deploy Lovable via FTP na Hostinger
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      VITE_API_URL: ${{ secrets.VITE_API_URL }}
+      VITE_PUBLIC_KEY: ${{ secrets.VITE_PUBLIC_KEY }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Criar .env.production (se necessário)
+        run: |
+          echo "VITE_API_URL=${VITE_API_URL}" >> .env.production
+          echo "VITE_PUBLIC_KEY=${VITE_PUBLIC_KEY}" >> .env.production
+
+      - name: Instalar dependências (com fallback)
+        run: |
+          echo "::group::npm ci"
+          npm ci || true
+          echo "::endgroup::"
+          if [ ! -d node_modules ]; then
+            echo "npm ci falhou, tentando com --legacy-peer-deps"
+            echo "::group::npm ci --legacy-peer-deps"
+            npm ci --legacy-peer-deps
+            echo "::endgroup::"
+          fi
+
+      - name: Build
+        run: npm run build
+
+      - name: Verificar saída do build
+        run: |
+          test -d dist || (echo "❌ Pasta dist não encontrada"; exit 1)
+          ls -al dist
+
+      - name: Deploy FTP para Hostinger (FTPS)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          protocol: ftps
+          port: 21
+          local-dir: dist/
+          # Se seu login já "cai" dentro de /public_html, mantenha "/"
+          server-dir: /
+          # IMPORTANTE: não limpar o servidor (deploy incremental)
+          dangerous-clean-slate: false
+          # opcional: dê um nome ao estado se tiver múltiplos ambientes
+          state-name: .ftp-deploy-sync-state.json
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/node_modules/**
+            .well-known/**
+          log-level: verbose
+          # concurrency: 3
+          # timeout: 600000

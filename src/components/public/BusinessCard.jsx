@@ -1,12 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { createPageUrl } from "@/utils";
+import { motion } from "framer-motion";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Clock, CreditCard, ShoppingCart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
-export default function BusinessCard({ business }) {
+export default function BusinessCard({ business, index = 0 }) {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -27,15 +28,23 @@ export default function BusinessCard({ business }) {
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-md transition-shadow cursor-pointer" onClick={handleCardClick}>
-      <div className="aspect-video relative bg-gray-100">
-        {business.image_url ? (
-          <img 
-            src={business.image_url} 
-            alt={business.business_name || business.name} 
-            className="w-full h-full object-cover"
-          />
-        ) : (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      whileHover={{ y: -8, transition: { duration: 0.2 } }}
+    >
+      <Card className="overflow-hidden hover:shadow-xl transition-shadow cursor-pointer" onClick={handleCardClick}>
+        <div className="aspect-video relative bg-gray-100 overflow-hidden">
+          {business.image_url ? (
+            <motion.img 
+              src={business.image_url} 
+              alt={business.business_name || business.name} 
+              className="w-full h-full object-cover"
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.6 }}
+            />
+          ) : (
           <div className="w-full h-full flex items-center justify-center bg-gray-200">
             <div className="text-3xl font-bold text-gray-400">
               {(business.business_name || business.name || "").charAt(0)}
@@ -92,5 +101,6 @@ export default function BusinessCard({ business }) {
         </div>
       </CardContent>
     </Card>
+    </motion.div>
   );
 }

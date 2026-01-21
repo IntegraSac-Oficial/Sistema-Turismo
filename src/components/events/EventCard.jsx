@@ -2,6 +2,7 @@
 import React from "react";
 import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { motion } from "framer-motion";
 import { Calendar, MapPin, Tag, Clock, Check, X } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -23,7 +24,7 @@ const formatDate = (dateStr) => {
   return format(parseISO(dateStr), "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
 };
 
-export default function EventCard({ event, isAdmin, onApprove, onReject, onClick }) {
+export default function EventCard({ event, isAdmin, onApprove, onReject, onClick, index = 0 }) {
   const getEventStatus = () => {
     if (event.status === 'pending') {
       return <Badge className="bg-yellow-100 text-yellow-800">Aguardando Aprovação</Badge>;
@@ -34,18 +35,26 @@ export default function EventCard({ event, isAdmin, onApprove, onReject, onClick
   };
 
   return (
-    <Card 
-      className="overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
-      onClick={onClick}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      whileHover={{ y: -8, transition: { duration: 0.2 } }}
     >
-      <div className="relative h-48 bg-gray-200">
-        {event.image_url ? (
-          <img 
-            src={event.image_url} 
-            alt={event.title} 
-            className="w-full h-full object-cover"
-          />
-        ) : (
+      <Card 
+        className="overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+        onClick={onClick}
+      >
+        <div className="relative h-48 bg-gray-200 overflow-hidden">
+          {event.image_url ? (
+            <motion.img 
+              src={event.image_url} 
+              alt={event.title} 
+              className="w-full h-full object-cover"
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.6 }}
+            />
+          ) : (
           <div className="flex items-center justify-center h-full">
             <Calendar className="w-12 h-12 text-gray-400" />
           </div>
@@ -112,5 +121,6 @@ export default function EventCard({ event, isAdmin, onApprove, onReject, onClick
         </CardFooter>
       )}
     </Card>
+    </motion.div>
   );
 }

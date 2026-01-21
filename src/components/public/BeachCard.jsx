@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
+import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Waves, MapPin, Star, ArrowRight } from "lucide-react";
 
-export default function BeachCard({ beach, city }) {
+export default function BeachCard({ beach, city, index = 0 }) {
   const getBeachFeatureIcon = (feature) => {
     // Função para renderizar ícones das características
     // Implemente conforme necessário
@@ -14,14 +15,22 @@ export default function BeachCard({ beach, city }) {
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="h-40 md:h-48 overflow-hidden relative">
-        <img
-          src={beach.image_url || "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"}
-          alt={beach.name}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-        />
-      </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      whileHover={{ y: -8, transition: { duration: 0.2 } }}
+    >
+      <Card className="overflow-hidden hover:shadow-xl transition-shadow">
+        <div className="h-40 md:h-48 overflow-hidden relative">
+          <motion.img
+            src={beach.image_url || "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"}
+            alt={beach.name}
+            className="w-full h-full object-cover"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.6 }}
+          />
+        </div>
       
       <CardContent className="p-4">
         <div className="flex items-center gap-2 mb-1">
@@ -61,5 +70,6 @@ export default function BeachCard({ beach, city }) {
         </div>
       </CardContent>
     </Card>
+    </motion.div>
   );
 }

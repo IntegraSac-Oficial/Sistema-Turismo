@@ -1,0 +1,9 @@
+plan_type,commission_percentage,description,is_active,id,created_date,updated_date,created_by,is_sample
+"commercial","10","Comissão para planos comerciais","true","67dae17c9ebe7092bdcbd87a","2025-03-19T15:23:40.656000","2025-03-19T15:23:40.656000","contato.jrsn@gmail.com","false"
+"providers","15","Comissão para planos de prestadores","true","67dae17c9ebe7092bdcbd87b","2025-03-19T15:23:40.656000","2025-03-19T15:23:40.656000","contato.jrsn@gmail.com","false"
+"club","10","Comissão para clube de assinantes","true","67dae17c9ebe7092bdcbd87c","2025-03-19T15:23:40.656000","2025-03-21T02:27:16.375000","contato.jrsn@gmail.com","false"
+"properties","5","Comissão para anúncios de imóveis","true","67dae17c9ebe7092bdcbd87d","2025-03-19T15:23:40.656000","2025-03-19T15:23:40.656000","contato.jrsn@gmail.com","false"
+"commercial","10","Comissão para planos comerciais","true","68183457376d1c819adf922d","2025-05-05T03:45:27.808000","2025-05-05T03:45:27.808000","contato.jrsn@gmail.com","false"
+"providers","15","Comissão para planos de prestadores","true","68183457376d1c819adf922e","2025-05-05T03:45:27.808000","2025-05-05T03:45:27.808000","contato.jrsn@gmail.com","false"
+"club","20","Comissão para planos de turistas/clube","true","68183457376d1c819adf922f","2025-05-05T03:45:27.808000","2025-05-05T03:45:27.808000","contato.jrsn@gmail.com","false"
+"properties","5","Comissão para planos imobiliários","true","68183457376d1c819adf9230","2025-05-05T03:45:27.808000","2025-05-05T03:45:27.808000","contato.jrsn@gmail.com","false"

@@ -1,0 +1,4 @@
+business_id,balance,pending_balance,total_received,last_payout_date,bank_info,auto_transfer,min_transfer_amount,id,created_date,updated_date,created_by,is_sample
+"681154724dfb6293047cd913","0","0","0","null","null","false","50","6812a16f8ba483af726faf11","2025-04-30T22:17:19.753000","2025-04-30T22:17:19.753000","contato.jrsn@gmail.com","false"
+"681821f8b37c6a3f1cf23767","0","0","0","null","null","false","50","68182e0f3439158c62269d57","2025-05-05T03:18:39.046000","2025-05-05T03:18:39.046000","contato.jrsn@gmail.com","false"
+"68190b3c1c073f8fe819553d","0","0","0","null","null","false","50","68191deb20e9bef17b03cb3f","2025-05-05T20:22:03.973000","2025-05-05T20:22:03.973000","anonymous","false"

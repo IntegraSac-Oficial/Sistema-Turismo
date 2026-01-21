@@ -1,0 +1,3 @@
+city_id,category,title,image_url,link_url,created_at,updated_at,id,created_date,updated_date,created_by,is_sample
+"67cdc32459c2f17692605cc1","Prefeitura","Banner teste","https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/bb1ab9_Screenshot_77.jpg","#","null","null","680eeb41618fe404f4772c8f","2025-04-28T02:43:13.072000","2025-04-28T02:51:18.396000","contato.jrsn@gmail.com","false"
+"67cdc32459c2f17692605cc1","680fa48c618fe404f47c785d","Novo banner","https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/f3089b_praia-do-molhe-2.jpg","#","null","null","680fa49f4dfb62930476f8ae","2025-04-28T15:54:07.032000","2025-04-28T15:54:07.032000","contato.jrsn@gmail.com","false"
